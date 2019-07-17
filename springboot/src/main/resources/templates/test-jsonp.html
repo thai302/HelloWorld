@@ -1,0 +1,29 @@
+<html>
+<head></head>
+<body>
+<script type="text/javascript">
+    function callJsonpRequest(callbackName) {
+        var empId = document.getElementById("empId").value;
+
+        var head = document.getElementsByTagName("head")[0];
+        var script = document.createElement("script");
+        script.src = "http://localhost:8081/kitcut/api/employee/test-jsonp?callback=" + callbackName + "&id=" + empId;
+
+        head.appendChild(script);
+    }
+
+    function receiveResponse(data) {
+        console.log(data);
+        // document.getElementById("info").innerHTML = "Id = " + data.Id + "<br/>Name = " + data.Name;
+    }
+</script>
+Employee Id:
+<br/>
+<input type="text" id="empId"></input>
+<button id="button1" onclick="callJsonpRequest('receiveResponse')">Get Info</button>
+<br/>
+Info:
+<br/>
+<div style="border:1px solid black;width:240px;height:100px" id="info"></div>
+</body>
+</html>

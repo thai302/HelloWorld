@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=france spring-cloud-service-registration-eureka-server-0.0.1-SNAPSHOT.jar

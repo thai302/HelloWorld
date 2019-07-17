@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#button1").click(function () {
+            var empId = $("#empId").val();
+
+            $.getJSON("http://localhost:8081/kitcut/api/employee/test-jsonp?callback=?",
+                "id=" + empId,
+                function (data) {
+                    document.getElementById("info").innerHTML = "Id = " + data.id + "<br/>Name = " + data.name;
+                });
+        });
+    });
+
+</script>
+Employee Id:
+<br/>
+<input type="text" id="empId"></input>
+<button id="button1">Get Info</button>
+<br/>
+Info:
+<br/>
+<div style="border:1px solid black;width:240px;height:100px" id="info"></div>
+</body>
+</html>
