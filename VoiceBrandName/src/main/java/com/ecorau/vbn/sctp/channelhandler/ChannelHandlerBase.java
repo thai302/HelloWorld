@@ -7,6 +7,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.sctp.SctpMessage;
 import org.apache.log4j.Logger;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class ChannelHandlerBase extends ChannelInboundHandlerAdapter {
     final static Logger logger = Logger.getLogger(ChannelHandlerBase.class);
 
@@ -34,6 +37,7 @@ public abstract class ChannelHandlerBase extends ChannelInboundHandlerAdapter {
         try {
             if (msg instanceof SctpMessage) {
                 SctpMessage sctpMessage = (SctpMessage) msg;
+                logger.info("Start: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new Date()));
                 logger.info("Server said(hex): " + ByteBufUtil.hexDump(sctpMessage.content()));
                 RequestContex requestCtx = new RequestContex();
                 requestCtx.setSctpMessage(sctpMessage);

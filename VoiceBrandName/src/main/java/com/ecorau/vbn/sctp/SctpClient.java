@@ -8,24 +8,13 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.sctp.nio.NioSctpChannel;
-import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Properties;
 
-public class SctpClient {
-    final static Logger logger = Logger.getLogger(SctpClient.class);
-
-    private M3uaChannelHandler channelHandler = new M3uaChannelHandler();
-
+public class SctpClient implements Runnable {
     private static SctpClient sctpClient = new SctpClient();
+    private M3uaChannelHandler channelHandler = new M3uaChannelHandler();
 
     private SctpClient() {
     }
@@ -34,38 +23,13 @@ public class SctpClient {
         return sctpClient;
     }
 
-    private AppConfig getConfig() {
-        Path currentRelativePath = Paths.get("");
-        String path = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + path);
-        String configFileDir = System.getProperty("user.dir") + File.separator + "config" + File.separator;
-        System.out.println("configFileDir is: " + configFileDir);
-        try (InputStream input = new FileInputStream(configFileDir + File.separator + "config.properties")) {
-            Properties prop = new Properties();
-            // load a properties file
-            prop.load(input);
-
-            AppConfig config = new AppConfig();
-            config.setRemoteIp(prop.getProperty("server.ip"));
-            config.setRemotePort(Integer.parseInt(prop.getProperty("server.port")));
-            config.setLocalIp(prop.getProperty("local.ip"));
-            config.setLocalPort(Integer.parseInt(prop.getProperty("local.port")));
-
-            //            config.aspUpId = Long.parseLong(prop.getProperty("aspup.id", "-1"));
-//            config.aspUpInfo = prop.getProperty("aspup.info");
-//            config.brandName = prop.getProperty("brandName");
-            return config;
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
+    @Override
+    public void run() {
+        connect();
     }
 
-    public void connect() {
-        AppConfig appConfig = getConfig();
+    private void connect() {
+        AppConfig appConfig = AppConfig.getInstance();
 
         EventLoopGroup group = new NioEventLoopGroup();
         try {
@@ -82,17 +46,12 @@ public class SctpClient {
             SocketAddress localAddress = new InetSocketAddress(appConfig.getLocalIp(), appConfig.getLocalPort());
             ChannelFuture channelFuture = clientBootstrap.connect(remoteAddress, localAddress).sync();
             channelFuture.channel().closeFuture().sync();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-        finally {
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
             group.shutdownGracefully();
         }
     }
-
-//    public void writeMessage(SctpMessage msg) {
-//        channelHandler.s.sendSctpMessage(msg);
-//    }
 
     public void sendMessage(ByteBuf data) {
         channelHandler.sendMessage(data);

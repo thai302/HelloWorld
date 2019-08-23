@@ -33,5 +33,7 @@
         <!--<module>springboot</module>-->
         <!--<module>base-rest-api</module>-->
         <!--<module>spring-cloud-service-registration-eureka-server</module>-->
+        <!--<module>netty-tcp-server</module>-->
+        <module>VoiceBrandName</module>
     </modules>
 </project>

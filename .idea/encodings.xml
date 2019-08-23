@@ -2,5 +2,14 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VoiceBrandName" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-rest-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/netty" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/netty-tcp-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-config-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-config-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-discovery-eureka-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-service-registration-eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot" charset="UTF-8" />
   </component>
 </project>

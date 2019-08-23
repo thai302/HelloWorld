@@ -2,7 +2,7 @@ package com.ecorau.vbn.map;
 
 import com.ecorau.vbn.PackageSender;
 import com.ecorau.vbn.RequestContex;
-import com.ecorau.vbn.map.response.TcapResponseMessageHandler;
+import com.ecorau.vbn.map.response.MapUnstructuredSSResponseMessageHandler;
 import io.netty.buffer.ByteBufUtil;
 import org.apache.log4j.Logger;
 import org.mobicents.protocols.asn.AsnInputStream;
@@ -22,7 +22,7 @@ public class MapUnstructuredSSRequestMessageHandler implements MapMessageChildHa
     public void process(RequestContex requestContex) {
         UnstructuredSSRequest unstructuredSSRequest = buildUnstructuredSSRequest(requestContex.getInvoke());
         UnstructuredSSResponse UnstructuredSSResponse = buildUnstructuredSSResponse(unstructuredSSRequest);
-        PackageSender packageSender = new TcapResponseMessageHandler();
+        PackageSender packageSender = new MapUnstructuredSSResponseMessageHandler();
         packageSender.send(UnstructuredSSResponse, requestContex);
     }
 

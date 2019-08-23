@@ -38,7 +38,7 @@ public class SccpSender implements PackageSender<SccpDataMessage> {
                             oldProtocolData.getSI(), oldProtocolData.getNI(),
                             oldProtocolData.getMP(), oldProtocolData.getSLS(), sData.getSolidData());
             m3uaPayloadData.setData(protocolData);
-            logger.info("M3UA sender send message: " + m3uaPayloadData.toString());
+//            logger.info("M3UA sender send message: " + m3uaPayloadData.toString());
 
             PackageSender packageSender = new M3uaSender();
             packageSender.send(m3uaPayloadData, requestContex);

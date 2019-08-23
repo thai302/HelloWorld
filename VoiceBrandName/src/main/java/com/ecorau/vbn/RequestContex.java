@@ -17,7 +17,7 @@ import org.restcomm.protocols.ss7.tcap.asn.comp.Invoke;
 
 @Getter
 @Setter
-public class RequestContex {
+public class RequestContex implements Cloneable{
     
     private SctpMessage sctpMessage;
     private M3UAMessage m3uaMessage;
@@ -29,5 +29,10 @@ public class RequestContex {
     private Invoke invoke;
 
     public RequestContex(){
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

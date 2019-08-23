@@ -31,7 +31,7 @@ public class TcapEndMessageHandler implements PackageSender<TCEndMessage> {
 
             SccpDataMessage sccpDataMsg = msgFactory.createDataMessageClass1(calledParty, callingParty,
                     aos.toByteArray(), oldMsg.getSls(), 0, true, oldMsg.getHopCounter(), oldMsg.getImportance());
-            logger.info("SccpSender send: " + sccpDataMsg.toString());
+//            logger.info("SccpSender send: " + sccpDataMsg.toString());
 
             PackageSender packageSender = new SccpSender();
             packageSender.send(sccpDataMsg, requestContex);

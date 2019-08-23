@@ -2,6 +2,7 @@ package com.ecorau.vbn.cap;
 
 import com.ecorau.vbn.PackageSender;
 import com.ecorau.vbn.RequestContex;
+import com.ecorau.vbn.cache.BrandName;
 import com.ecorau.vbn.cap.response.CapConnectMessageHandler;
 import com.ecorau.vbn.utils.GSM7BitConverter;
 import io.netty.buffer.ByteBufUtil;
@@ -59,38 +60,41 @@ public class CapInitialDPRequestMessageHandler implements CapMessageChildHandler
     }
 
     private ConnectRequest buildConnectRequest(InitialDPRequest initialDPRequest) {
-        //set DestinationRoutingAddress
-        DestinationRoutingAddressImpl dra = new DestinationRoutingAddressImpl();
-        dra.calledPartyNumber = new ArrayList<>();
-        dra.calledPartyNumber.add(initialDPRequest.getCalledPartyNumber());
+        try {
+            //set DestinationRoutingAddress
+            DestinationRoutingAddressImpl dra = new DestinationRoutingAddressImpl();
+            dra.calledPartyNumber = new ArrayList<>();
+            dra.calledPartyNumber.add(initialDPRequest.getCalledPartyNumber());
 
-        //set CAPExtensions
-        byte[] brandNameData = ByteBufUtil.decodeHexDump(GSM7BitConverter.stringToGsm7BitPackHex("VBN-ECORAU"));
-//        byte[] brandNameData = ByteBufUtil.decodeHexDump("Viettel");
-
-        AsnOutputStream brandNameAos = new AsnOutputStream();
+            //set CAPExtensions
+            String brandNameStr = BrandName.getBrandName(initialDPRequest.getCallingPartyNumber().getCallingPartyNumber().getAddress());
+            byte[] brandNameData = ByteBufUtil.decodeHexDump(GSM7BitConverter.stringToGsm7BitPackHex(brandNameStr));
+            AsnOutputStream brandNameAos = new AsnOutputStream();
 //            brandNameAos.writeTag(Tag.CLASS_CONTEXT_SPECIFIC, false, 1);
-        brandNameAos.write(ByteBufUtil.decodeHexDump("80010F8101"));
-        brandNameAos.write(brandNameData.length);
-        brandNameAos.write(ByteBufUtil.decodeHexDump("82"));
-        brandNameAos.write(brandNameData.length);
-        brandNameAos.write(brandNameData);
+            brandNameAos.write(ByteBufUtil.decodeHexDump("80010F8101"));
+            brandNameAos.write(brandNameData.length);
+            brandNameAos.write(ByteBufUtil.decodeHexDump("82"));
+            brandNameAos.write(brandNameData.length);
+            brandNameAos.write(brandNameData);
 
-        ExtensionFieldImpl extensionField
-                = new ExtensionFieldImpl(new long[]{0, 4, 0, 1, 2}, CriticalityType.typeIgnore, brandNameAos.toByteArray());
-        extensionField.setCriticalityType(CriticalityType.typeIgnore);
-        extensionField.isPrimitive = false;
+            ExtensionFieldImpl extensionField
+                    = new ExtensionFieldImpl(new long[]{0, 4, 0, 1, 2}, CriticalityType.typeIgnore, brandNameAos.toByteArray());
+            extensionField.setCriticalityType(CriticalityType.typeIgnore);
+            extensionField.isPrimitive = false;
 
-        ArrayList<ExtensionField> extensionFields = new ArrayList<>();
-        extensionFields.add(extensionField);
+            ArrayList<ExtensionField> extensionFields = new ArrayList<>();
+            extensionFields.add(extensionField);
 
-        CAPExtensionsImpl capEx = new CAPExtensionsImpl(extensionFields);
+            CAPExtensionsImpl capEx = new CAPExtensionsImpl(extensionFields);
 
-        ConnectRequest connMsg = new ConnectRequestImpl(dra, null, null,
-                capEx, null, null, null, null, null, null, null,
-                null, null, false, false, false, null, false, false);
-        connMsg.setInvokeId(initialDPRequest.getInvokeId());
+            ConnectRequest connMsg = new ConnectRequestImpl(dra, null, null,
+                    capEx, null, null, null, null, null, null, null,
+                    null, null, false, false, false, null, false, false);
+            connMsg.setInvokeId(initialDPRequest.getInvokeId());
 
-        return connMsg;
+            return connMsg;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

@@ -28,7 +28,6 @@ public abstract class TcapResponseMessageHandler implements PackageSender<Object
             tcEndMessage.setComponent(new Component[]{component});
             tcEndMessage.setDialogPortion(dialogPortion);
             tcEndMessage.setDestinationTransactionId(tcBeginMessage.getOriginatingTransactionId());
-            logger.info("TCapSender send message: " + tcEndMessage.toString());
 
             PackageSender packageSender = new TcapEndMessageHandler();
             packageSender.send(tcEndMessage, requestContex);

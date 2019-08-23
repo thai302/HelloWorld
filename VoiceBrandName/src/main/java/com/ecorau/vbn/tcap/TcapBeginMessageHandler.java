@@ -17,7 +17,6 @@ public class TcapBeginMessageHandler extends TcapMessageBase implements TcapMess
     @Override
     public void process() {
         TCBeginMessage tcBeginMessage = (TCBeginMessage) requestContex.getTcapMessage();
-        System.out.println("Handle Tcap Begin mesage: " + tcBeginMessage.toString());
 
         requestContex.setComponents(tcBeginMessage.getComponent());
         TcapUpperLayerMessageHandler tcapUpperLayerMessageHandler = TcapUpperLayerFactory.getTcapUpperLayerMessageHandler(
