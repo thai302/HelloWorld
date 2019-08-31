@@ -39,11 +39,9 @@ public abstract class ChannelHandlerBase extends ChannelInboundHandlerAdapter {
                 SctpMessage sctpMessage = (SctpMessage) msg;
                 logger.info("Start: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new Date()));
                 logger.info("Server said(hex): " + ByteBufUtil.hexDump(sctpMessage.content()));
-                RequestContex requestCtx = new RequestContex();
-                requestCtx.setSctpMessage(sctpMessage);
 
                 if (sctpMessage.protocolIdentifier() == this.protocolIdentifier)
-                    processMessage(requestCtx);
+                    processMessage(sctpMessage);
                 else
                     logger.warn("Can not handle message with protocolIdentifier = " + sctpMessage.protocolIdentifier());
             }
@@ -68,5 +66,5 @@ public abstract class ChannelHandlerBase extends ChannelInboundHandlerAdapter {
         }
     }
 
-    protected abstract void processMessage(RequestContex requestContex);
+    protected abstract void processMessage(SctpMessage sctpMessage);
 }

@@ -32,8 +32,14 @@
     <modules>
         <!--<module>springboot</module>-->
         <!--<module>base-rest-api</module>-->
-        <!--<module>spring-cloud-service-registration-eureka-server</module>-->
+        <!--<module>spring-cloud-services-registration-eureka-server</module>-->
         <!--<module>netty-tcp-server</module>-->
+        <module>netty</module>
         <module>VoiceBrandName</module>
+        <module>rabbitmq</module>
+        <module>json-abstract-class</module>
+        <!--<module>marshalling</module>-->
+        <module>stream</module>
+        <!--<module>test1</module>-->
     </modules>
 </project>

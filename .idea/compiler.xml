@@ -6,12 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="base-rest-api" />
+        <module name="json-abstract-class" />
         <module name="netty" />
+        <module name="rabbitmq" />
+        <module name="stream" />
+        <module name="vbn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="HelloWorld" target="1.8" />
-      <module name="nettytcpserver" target="1.8" />
+      <module name="base-rest-api" target="1.8" />
+      <module name="marshalling" target="1.8" />
+      <module name="test1" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

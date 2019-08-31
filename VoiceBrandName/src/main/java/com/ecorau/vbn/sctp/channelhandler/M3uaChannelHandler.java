@@ -4,6 +4,7 @@ import com.ecorau.vbn.RequestContex;
 import com.ecorau.vbn.constants.PayloadProtocolIdentifier;
 import com.ecorau.vbn.m3ua.M3uaMessageFactory;
 import com.ecorau.vbn.m3ua.M3uaMessageHandler;
+import com.ecorau.vbn.queue.Producer;
 import com.sun.nio.sctp.MessageInfo;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -15,6 +16,8 @@ import org.restcomm.protocols.ss7.m3ua.message.M3UAMessage;
 import org.restcomm.protocols.ss7.m3ua.message.MessageFactory;
 
 public class M3uaChannelHandler extends ChannelHandlerBase {
+
+    public static boolean isHandShakeSuccess;
 
     private MessageFactory messageFactory = new MessageFactoryImpl();
 
@@ -45,14 +48,19 @@ public class M3uaChannelHandler extends ChannelHandlerBase {
     }
 
     @Override
-    protected void processMessage(RequestContex requestContex) {
-        M3UAMessage m3uaMessage = messageFactory.createMessage(requestContex.getSctpMessage().content());
-        requestContex.setM3uaMessage(m3uaMessage);
-        M3uaMessageHandler m3uaMessageHandler = M3uaMessageFactory.getM3uaMessageHandler(m3uaMessage);
+    protected void processMessage(SctpMessage sctpMessage) {
+        if (isHandShakeSuccess)
+            Producer.addMessageToQueue(sctpMessage.content());
+        else {
+            M3UAMessage m3uaMessage = messageFactory.createMessage(sctpMessage.content());
+            RequestContex requestContex = new RequestContex();
+            requestContex.setM3uaMessage(m3uaMessage);
+            M3uaMessageHandler m3uaMessageHandler = M3uaMessageFactory.getM3uaMessageHandler(m3uaMessage);
 
-        if (m3uaMessageHandler != null)
-            m3uaMessageHandler.process(requestContex);
-        else
-            logger.warn("M3ua message is not handled");
+            if (m3uaMessageHandler != null)
+                m3uaMessageHandler.process(requestContex);
+            else
+                logger.warn("M3ua message is not handled");
+        }
     }
 }

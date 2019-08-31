@@ -22,11 +22,22 @@
 
 package org.restcomm.protocols.ss7.m3ua.parameter;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.restcomm.protocols.ss7.m3ua.impl.parameter.ProtocolDataImpl;
+
 /**
  * Protocl data parameter.
  *
  * @author kulikov
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ProtocolDataImpl.class),
+})
 public interface ProtocolData extends Parameter {
     /**
      * Gets origination point code.

@@ -18,8 +18,6 @@ import org.restcomm.protocols.ss7.tcap.asn.comp.Invoke;
 @Getter
 @Setter
 public class RequestContex implements Cloneable{
-    
-    private SctpMessage sctpMessage;
     private M3UAMessage m3uaMessage;
     private SccpMessage sccpMessage;
     private Object tcapMessage;

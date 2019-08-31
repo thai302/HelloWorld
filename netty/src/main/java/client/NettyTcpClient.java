@@ -24,8 +24,7 @@ public class NettyTcpClient {
             clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
 //                    socketChannel.pipeline().addLast(new ClientHandler());
-                    socketChannel.pipeline().addLast(new RequestDataEncoder(),
-                            new ResponseDataDecoder(), new ClientHandler());
+                    socketChannel.pipeline().addLast(new ClientHandler());
                 }
             });
             ChannelFuture channelFuture = clientBootstrap.connect().sync();

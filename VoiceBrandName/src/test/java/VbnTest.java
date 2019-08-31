@@ -4,6 +4,7 @@ import com.ecorau.vbn.m3ua.M3uaPayloadDataMessageHandler;
 import com.ecorau.vbn.queue.Consumer;
 import com.ecorau.vbn.queue.Producer;
 import com.ecorau.vbn.sctp.AppConfig;
+import com.ecorau.vbn.sctp.channelhandler.M3uaChannelHandler;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
@@ -23,10 +24,10 @@ public class VbnTest {
         int numberOfThread = AppConfig.getInstance().getNumberOfThread();
         ExecutorService executionException = Executors.newFixedThreadPool(numberOfThread);
 
-        Consumer consumer = new Consumer(Producer.queue);
-        for (int i = 0; i < numberOfThread; i++) {
-            executionException.execute(consumer);
-        }
+//        Consumer consumer = new Consumer(Producer.queue);
+//        for (int i = 0; i < numberOfThread; i++) {
+//            executionException.execute(consumer);
+//        }
 
         String msgNokia = "0100" +
                 "0101000000a002100095000005290000" +
@@ -56,13 +57,18 @@ public class VbnTest {
                 "9282";
 
 
-        int numberOfMessage = 5;
+        int numberOfMessage = 1;
         for (int i = 0; i < numberOfMessage; i++) {
             logger.info("Start: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")).format(new Date()));
 
             byte[] msgBytes = ByteBufUtil.decodeHexDump(msgHuawei);
             ByteBuf msgByteBuf = Unpooled.copiedBuffer(msgBytes);
 
+            //queue with bytebuff
+//            M3uaChannelHandler.isHandShakeSuccess = true;
+//            Producer.addMessageToQueue(msgByteBuf);
+
+            //queue with payload
             M3UAMessage m3uaMsg = new MessageFactoryImpl().createMessage(msgByteBuf);
             RequestContex requestContex = new RequestContex();
             requestContex.setM3uaMessage(m3uaMsg);

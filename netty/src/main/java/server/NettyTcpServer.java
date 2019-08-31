@@ -24,8 +24,7 @@ public class NettyTcpServer {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
 //                    socketChannel.pipeline().addLast(new HelloServerHandler());
-                    socketChannel.pipeline().addLast(new RequestDecoder(),
-                            new ResponseDataEncoder(),
+                    socketChannel.pipeline().addLast(
                             new ProcessingHandler());
                 }
             });

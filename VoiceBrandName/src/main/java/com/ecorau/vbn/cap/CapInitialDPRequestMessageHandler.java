@@ -68,7 +68,7 @@ public class CapInitialDPRequestMessageHandler implements CapMessageChildHandler
 
             //set CAPExtensions
             String brandNameStr = BrandName.getBrandName(initialDPRequest.getCallingPartyNumber().getCallingPartyNumber().getAddress());
-            byte[] brandNameData = ByteBufUtil.decodeHexDump(GSM7BitConverter.stringToGsm7BitPackHex(brandNameStr));
+            byte[] brandNameData = ByteBufUtil.decodeHexDump(GSM7BitConverter.stringToGsm7BitPackHexUssd(brandNameStr));
             AsnOutputStream brandNameAos = new AsnOutputStream();
 //            brandNameAos.writeTag(Tag.CLASS_CONTEXT_SPECIFIC, false, 1);
             brandNameAos.write(ByteBufUtil.decodeHexDump("80010F8101"));
