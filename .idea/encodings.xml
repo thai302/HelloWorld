@@ -4,9 +4,11 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/VoiceBrandName" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-rest-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hazelcast" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/json-abstract-class" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/marshalling" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/netty" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rabbitmq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stream" charset="UTF-8" />
   </component>

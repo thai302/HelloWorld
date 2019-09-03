@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="base-rest-api" />
+        <module name="hazelcast" />
         <module name="json-abstract-class" />
         <module name="netty" />
         <module name="rabbitmq" />
@@ -16,8 +17,12 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base-rest-api" target="1.8" />
+      <module name="hazelcast" target="1.8" />
+      <module name="HelloWorld" target="1.8" />
       <module name="marshalling" target="1.8" />
+      <module name="netty" target="1.8" />
       <module name="test1" target="1.5" />
+      <module name="vbn" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
