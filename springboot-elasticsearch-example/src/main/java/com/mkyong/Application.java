@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 
-import java.util.List;
 import java.util.Map;
 
 @SpringBootApplication
@@ -33,12 +32,11 @@ public class Application implements CommandLineRunner {
         printElasticSearchInfo();
 
         bookService.save(new Book("1001", "Elasticsearch Basics", "Rambabu Posa", "23-FEB-2017"));
-//        bookService.save(new Book("1002", "Apache Lucene Basics", "Rambabu Posa", "13-MAR-2017"));
-//        bookService.save(new Book("1003", "Apache Solr Basics", "Rambabu Posa", "21-MAR-2017"));
+        bookService.save(new Book("1002", "Apache Lucene Basics", "Rambabu Posa", "13-MAR-2017"));
+        bookService.save(new Book("1003", "Apache Solr Basics", "Rambabu Posa", "21-MAR-2017"));
 
         //fuzzey search
-//        Page<Book> books = bookService.findByAuthor("Rambabu", new PageRequest(0, 10));
-        List<Book> books = bookService.findByTitle("Lucene");
+        Page<Book> books = bookService.findByAuthor("Rambabu", new PageRequest(0, 10));
 
         //List<Book> books = bookService.findByTitle("Elasticsearch Basics");
 

@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="base-rest-api" />
-        <module name="hazelcast" />
         <module name="json-abstract-class" />
         <module name="netty" />
         <module name="rabbitmq" />
+        <module name="springboot" />
+        <module name="springboot-springdata-elasticsearch-example" />
         <module name="stream" />
+        <module name="test-nginx" />
         <module name="vbn" />
       </profile>
     </annotationProcessing>
@@ -21,6 +23,10 @@
       <module name="HelloWorld" target="1.8" />
       <module name="marshalling" target="1.8" />
       <module name="netty" target="1.8" />
+      <module name="springboot" target="1.8" />
+      <module name="springboot-elasticsearch-example" target="1.8" />
+      <module name="springboot-springdata-elasticsearch-example" target="1.8" />
+      <module name="test-nginx" target="1.8" />
       <module name="test1" target="1.5" />
       <module name="vbn" target="1.8" />
     </bytecodeTargetLevel>

@@ -28,3 +28,8 @@ logging:
   path: C:/springboot.log
 
 language: en
+
+#elasticsearch
+#  clustername: my-application
+#  host: localhost
+#  port: 9300
