@@ -4,12 +4,12 @@
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <network>
-        <port auto-increment="true" port-count="20">5710</port>
+        <port auto-increment="true" port-count="20">5701</port>
         <join>
             <multicast enabled="false">
             </multicast>
             <tcp-ip enabled="true">
-                <!--<member>machine1</member>-->
+                <member>machine1</member>
                 <member>localhost</member>
             </tcp-ip>
         </join>

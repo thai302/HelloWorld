@@ -4,7 +4,9 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.GroupConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
+import entity.EmployeeEntity;
 
+import java.util.List;
 import java.util.Map;
 
 public class ClientNode {
@@ -28,9 +30,7 @@ public class ClientNode {
         HazelcastInstance hzClient
                 = HazelcastClient.newHazelcastClient(config);
 
-        IMap<Long, String> map = hzClient.getMap("data");
-        for (Map.Entry<Long, String> entry : map.entrySet()) {
-            System.out.println(entry);
-        }
+        IMap<Long, List<EmployeeEntity>> map = hzClient.getMap("data");
+        int i = 1;
     }
 }

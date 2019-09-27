@@ -6,26 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="base-rest-api" />
-        <module name="json-abstract-class" />
-        <module name="netty" />
-        <module name="rabbitmq" />
+        <module name="caching-hazecastl-server" />
+        <module name="cachinghazelcastclient" />
+        <module name="database" />
+        <module name="hazelcast" />
+        <module name="HelloHibernate" />
         <module name="springboot" />
-        <module name="springboot-springdata-elasticsearch-example" />
-        <module name="stream" />
-        <module name="test-nginx" />
-        <module name="vbn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base-rest-api" target="1.8" />
-      <module name="hazelcast" target="1.8" />
+      <module name="caching-hazecast-server" target="1.8" />
+      <module name="cachinghazecastserver" target="1.8" />
       <module name="HelloWorld" target="1.8" />
+      <module name="json-abstract-class" target="1.8" />
       <module name="marshalling" target="1.8" />
       <module name="netty" target="1.8" />
+      <module name="rabbitmq" target="1.8" />
       <module name="springboot" target="1.8" />
       <module name="springboot-elasticsearch-example" target="1.8" />
       <module name="springboot-springdata-elasticsearch-example" target="1.8" />
+      <module name="stream" target="1.8" />
       <module name="test-nginx" target="1.8" />
       <module name="test1" target="1.5" />
       <module name="vbn" target="1.8" />
