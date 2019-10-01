@@ -6,18 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="caching-hazecastl-server" />
-        <module name="cachinghazelcastclient" />
-        <module name="database" />
-        <module name="hazelcast" />
+        <module name="base-rest-api" />
+        <module name="caching-hazelcast-client" />
+        <module name="caching-hazelcast-server" />
         <module name="HelloHibernate" />
+        <module name="netty" />
+        <module name="reflection" />
         <module name="springboot" />
+        <module name="springboot-springdata-elasticsearch-example" />
+        <module name="test-nginx" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base-rest-api" target="1.8" />
       <module name="caching-hazecast-server" target="1.8" />
+      <module name="caching-hazecastl-server" target="1.8" />
+      <module name="caching-hazelcast-client" target="1.8" />
       <module name="cachinghazecastserver" target="1.8" />
+      <module name="cachinghazelcastclient" target="1.8" />
+      <module name="database" target="1.8" />
+      <module name="hazelcast" target="1.8" />
       <module name="HelloWorld" target="1.8" />
       <module name="json-abstract-class" target="1.8" />
       <module name="marshalling" target="1.8" />

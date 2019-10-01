@@ -14,6 +14,6 @@ public class CachingHazelcastClientMain {
     public static void main(String[] args) {
         CachingEmployeeService cachingEmployeeService = new CachingEmployeeService();
         List<EmployeeEntity> employeeEntityList = cachingEmployeeService.getAll();
-int i = 1;
+        int i = 1;
     }
 }

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/VoiceBrandName" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-rest-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/caching-hazelcast-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/caching-hazelcast-server" charset="UTF-8" />
@@ -13,6 +12,7 @@
     <file url="file://$PROJECT_DIR$/netty" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rabbitmq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reflection" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springboot" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springboot-elasticsearch-example" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stream" charset="UTF-8" />
