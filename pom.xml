@@ -44,8 +44,9 @@
         <!--<module>springboot-elasticsearch-example</module>-->
         <!--<module>test-nginx</module>-->
         <module>caching-hazelcast-server</module>
-        <!--<module>database</module>-->
-        <!--<module>caching-hazelcast-client</module>-->
+        <module>database</module>
+        <module>caching-hazelcast-client</module>
         <module>reflection</module>
+        <module>HelloHibernate</module>
     </modules>
 </project>

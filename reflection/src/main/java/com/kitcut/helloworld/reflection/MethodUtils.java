@@ -10,7 +10,6 @@ public class MethodUtils {
             try {
                 method = clazz.getDeclaredMethod(name);
             } catch (Exception ex) {
-                throw new RuntimeException(ex);
             }
             clazz = clazz.getSuperclass();
         }

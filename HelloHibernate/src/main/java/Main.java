@@ -57,8 +57,8 @@ public class Main {
 
         EmployeeDAO ME = new EmployeeDAO(factory);
         /* Add few employee records in database */
-//        Integer empID1 = ME.addEmployee("firstName", "Ali", 1000);
-        ME.listEmployees();
+        Integer empID1 = ME.addEmployee("firstName", "Ali", 1000);
+//        ME.listEmployees();
     }
 
 

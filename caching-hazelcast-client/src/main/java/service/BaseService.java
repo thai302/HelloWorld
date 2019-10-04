@@ -7,10 +7,13 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.kitcut.helloworld.database.entity.EmployeeEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BaseService<E> {
+public class BaseService<K, V> {
     protected static HazelcastInstance hzClient;
+
+    private Class<V> clazzEntity;
 
     static {
         ClientConfig config = new ClientConfig();
@@ -22,8 +25,14 @@ public class BaseService<E> {
                 = HazelcastClient.newHazelcastClient(config);
     }
 
-    public List<E> getAll() {
-        IMap<Long, List<E>> map = hzClient.getMap("data");
-        return map.get(1L);
+    public List<V> getAll() {
+        IMap<K, V> map = hzClient.getMap(EmployeeEntity.class.getSimpleName());
+        return new ArrayList<>(map.values());
+    }
+
+    public void  delete(K k) {
+        IMap<K, V> map = hzClient.getMap(EmployeeEntity.class.getSimpleName());
+        map.remove(1);
+        int i = 1;
     }
 }

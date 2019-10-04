@@ -30,8 +30,10 @@ public class BaseMapStore<K, V> {
 
     protected Map<K, V> map;
 
-    static{
-         hazelcastInstance = Hazelcast.newHazelcastInstance();
+    private Field fieldId;
+
+    static {
+        hazelcastInstance = Hazelcast.newHazelcastInstance();
 
         //Hibernate
         try {
@@ -43,33 +45,35 @@ public class BaseMapStore<K, V> {
 
     }
 
+    //called when start project
     protected void init() {
         Type type = getClass().getGenericSuperclass();
         ParameterizedType paramType = (ParameterizedType) type;
         clazzEntity = (Class<V>) paramType.getActualTypeArguments()[1];
 
         map = hazelcastInstance.getMap(clazzEntity.getSimpleName());
+
+        for (Field field : clazzEntity.getDeclaredFields()) {
+            Annotation annotation = field.getAnnotation(Id.class);
+            if (annotation != null) {
+                fieldId = field;
+                fieldId.setAccessible(true);
+                break;
+            }
+        }
     }
 
-    private void loadAll() {
+    //called when start project
+    protected void loadAll() {
         Session session = factory.openSession();
 
         try {
             Query query = session.createQuery("FROM " + clazzEntity.getName(), clazzEntity);
             List<V> values = query.list();
             if (values.size() > 0) {
-                Field fieldId = null;
-                for (Field field : clazzEntity.getDeclaredFields()) {
-                    Annotation annotation = field.getAnnotation(Id.class);
-                    if (annotation != null) {
-                        fieldId = field;
-                        break;
-                    }
-                }
 
                 if (fieldId != null) {
                     for (V value : values) {
-                        fieldId.setAccessible(true);
                         K key = (K) fieldId.get(value);
                         map.put(key, value);
                     }
@@ -82,5 +86,54 @@ public class BaseMapStore<K, V> {
         } finally {
             session.close();
         }
+    }
+
+    protected void save(V value) {
+        Session session = factory.openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(value);
+
+            K key = (K) fieldId.get(value);
+            if (map.containsKey(key))
+                map.replace(key, value);
+            else
+                map.put(key, value);
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    protected void delete(V value) {
+        Session session = factory.openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            session.delete(value);
+
+            K key = (K) fieldId.get(value);
+            map.remove(key);
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    protected void deleteById(K key) {
+        V value = map.get(key);
+        if(value != null)
+            delete(value);
     }
 }

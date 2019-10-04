@@ -13,7 +13,8 @@ import java.util.Map;
 public class CachingHazelcastClientMain {
     public static void main(String[] args) {
         CachingEmployeeService cachingEmployeeService = new CachingEmployeeService();
-        List<EmployeeEntity> employeeEntityList = cachingEmployeeService.getAll();
+//        List<EmployeeEntity> employeeEntityList = cachingEmployeeService.getAll();
+        cachingEmployeeService.delete(1L);
         int i = 1;
     }
 }

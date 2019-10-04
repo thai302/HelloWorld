@@ -7,7 +7,4 @@ import org.hibernate.SessionFactory;
 
 @MapStore
 public class EmployeeMapStore extends BaseMapStore<Long, EmployeeEntity> {
-//    public EmployeeMapStore() {
-//        super.init();
-//    }
 }

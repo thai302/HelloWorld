@@ -35,12 +35,15 @@ public class EmployeeDAO extends BaseDAO {
                 employee.setFirstName(fname);
                 employee.setLastName(lname);
                 employee.setSalary(salary);
-                employeeID = (Integer) session.save(employee);
+//                employeeID = (Integer) session.save(employee);
+//                session.persist(employee);
+                employee.setId(7);
+                session.persist(employee);
 
-                employee.setSalary(11);
-                session.save(employee);
-                employee.setSalary(12);
-                session.save(employee);
+//                employee.setSalary(11);
+//                session.save(employee);
+//                employee.setSalary(12);
+//                session.save(employee);
 //                if (i % 50 == 0) { // Same as the JDBC batch size
 //                    //flush a batch of inserts and release memory:
 //                    session.flush();
