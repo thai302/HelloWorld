@@ -1,24 +1,6 @@
-import com.kitcut.dao.AddressDAO;
 import com.kitcut.dao.EmployeeDAO;
-import com.kitcut.dao.Jdbc;
-import com.kitcut.dao.VtDAO;
-import com.kitcut.entity.Address;
-import com.kitcut.entity.Certificate;
-import com.kitcut.entity.Employee;
-import com.kitcut.entity.SubEmployee;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class Main {
     private static SessionFactory factory;
@@ -57,8 +39,8 @@ public class Main {
 
         EmployeeDAO ME = new EmployeeDAO(factory);
         /* Add few employee records in database */
-        Integer empID1 = ME.addEmployee("firstName", "Ali", 1000);
-//        ME.listEmployees();
+//        Integer empID1 = ME.addEmployee("firstName", "Ali", 1000);
+        ME.listEmployeesRs();
     }
 
 

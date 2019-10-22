@@ -1,18 +1,14 @@
 package com.kitcut.dao;
 
-import com.kitcut.entity.Address;
-import com.kitcut.entity.Certificate;
 import com.kitcut.entity.Employee;
-import com.kitcut.entity.EmployeeInfo;
+import com.kitcut.entity.EmployeeRs;
 import org.hibernate.*;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class EmployeeDAO extends BaseDAO {
 
@@ -37,7 +33,6 @@ public class EmployeeDAO extends BaseDAO {
                 employee.setSalary(salary);
 //                employeeID = (Integer) session.save(employee);
 //                session.persist(employee);
-                employee.setId(7);
                 session.persist(employee);
 
 //                employee.setSalary(11);
@@ -66,23 +61,52 @@ public class EmployeeDAO extends BaseDAO {
     /* Method to  READ all the employees */
     public void listEmployees() {
         Session session = factory.openSession();
-        Session session2 = factory.openSession();
         Transaction tx = null;
-        Transaction tx2 = null;
 
         try {
             tx = session.beginTransaction();
-
-            String hql = "SELECT new com.kitcut.entity.EmployeeInfo(e.id, e.firstName) FROM Employee e WHERE id = :id";
 
             Query query = session.createQuery("SELECT e FROM Employee e");
             List employees = query.list();
 
             for (Iterator iterator = employees.iterator(); iterator.hasNext(); ) {
                 Employee employee = (Employee) iterator.next();
-                System.out.print("First Name: " + employee.getFirstName());
+                System.out.print("  Id: " + employee.getId());
+                System.out.print("  First Name: " + employee.getFirstName());
                 System.out.print("  Last Name: " + employee.getLastName());
                 System.out.println("  Salary: " + employee.getSalary());
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    /* Method to  READ all the employees */
+    public void listEmployeesRs() {
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            String hql = "SELECT new com.kitcut.entity.EmployeeRs(e.firstName, e.id) FROM Employee e WHERE id = :id";
+            Query<EmployeeRs> query = session.createQuery(hql);
+            query.setParameter("id", 1);
+            List<EmployeeRs> results = query.list();
+
+//            String hql = "SELECT e.id, e.firstName FROM Employee e WHERE id = :id";
+//            Query<EmployeeRs> query = session.createQuery(hql);
+//            query.setParameter("id", 1);
+//            query.setResultTransformer(Transformers.aliasToBean(EmployeeRs.class));
+//            List<EmployeeRs> results = query.list();
+
+            for (EmployeeRs employeeRs : results) {
+                System.out.print("  Id: " + employeeRs.getId());
+                System.out.print("  First Name: " + employeeRs.getFirstName());
             }
             tx.commit();
         } catch (HibernateException e) {
