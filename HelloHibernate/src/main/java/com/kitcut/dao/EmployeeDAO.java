@@ -2,6 +2,7 @@ package com.kitcut.dao;
 
 import com.kitcut.entity.Employee;
 import com.kitcut.entity.EmployeeRs;
+import net.sf.ehcache.CacheManager;
 import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
@@ -93,21 +94,45 @@ public class EmployeeDAO extends BaseDAO {
         try {
             tx = session.beginTransaction();
 
-            String hql = "SELECT new com.kitcut.entity.EmployeeRs(e.firstName, e.id) FROM Employee e WHERE id = :id";
+            String hql = "SELECT new com.kitcut.entity.EmployeeRs(e.id, e.firstName) FROM Employee e WHERE id = :id";
             Query<EmployeeRs> query = session.createQuery(hql);
             query.setParameter("id", 1);
             List<EmployeeRs> results = query.list();
-
-//            String hql = "SELECT e.id, e.firstName FROM Employee e WHERE id = :id";
-//            Query<EmployeeRs> query = session.createQuery(hql);
-//            query.setParameter("id", 1);
-//            query.setResultTransformer(Transformers.aliasToBean(EmployeeRs.class));
-//            List<EmployeeRs> results = query.list();
 
             for (EmployeeRs employeeRs : results) {
                 System.out.print("  Id: " + employeeRs.getId());
                 System.out.print("  First Name: " + employeeRs.getFirstName());
             }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void testSecondLevelCache() {
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            int id = 716870;
+
+            Session session1 = factory.openSession();
+            Employee emp1 = session1.get(Employee.class, id);
+            session1.close();
+
+            Session session2 = factory.openSession();
+            Employee emp2 = session2.get(Employee.class, id);
+            session2.close();
+
+            Employee employee = session.get(Employee.class, id);
+
+            int size = CacheManager.ALL_CACHE_MANAGERS.get(0)
+                    .getCache("com.kitcut.entity.Employee").getSize();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

@@ -8,12 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class EmployeeRs {
-    private String firstName;
     private int id;
-
-//    public EmployeeRs(String firstName){
-//        this.firstName = firstName;
-//    }
-
-    public EmployeeRs(){}
+    private String firstName;
 }

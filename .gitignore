@@ -1,6 +1,7 @@
 .idea/*
 */target
 target
+out
 *.iml
 .*/netty
 .scannerwork

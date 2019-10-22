@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "EMPLOYEE")
 @NamedQuery(query = "SELECT e FROM Employee e WHERE id = :id", name = "test")
-@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
