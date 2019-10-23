@@ -13,7 +13,6 @@
     <artifactId>HelloHibernate</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>

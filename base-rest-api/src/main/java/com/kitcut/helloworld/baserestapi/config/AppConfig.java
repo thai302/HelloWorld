@@ -13,6 +13,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor);
+        registry.addInterceptor(interceptor)
+                .excludePathPatterns("/swagger**", "/webjars/springfox-swagger-ui/**");
     }
 }

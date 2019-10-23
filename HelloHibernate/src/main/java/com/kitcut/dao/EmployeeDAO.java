@@ -114,28 +114,28 @@ public class EmployeeDAO extends BaseDAO {
 
     public void testSecondLevelCache() {
         Session session = factory.openSession();
-        Transaction tx = null;
 
         try {
-            tx = session.beginTransaction();
-
-            int id = 716870;
+            int id = 1;
 
             Session session1 = factory.openSession();
+            Transaction tx = session1.beginTransaction();
+
             Employee emp1 = session1.get(Employee.class, id);
+            emp1.setFirstName("thai 2");
+            session1.save(emp1);
+            tx.commit();
             session1.close();
 
             Session session2 = factory.openSession();
             Employee emp2 = session2.get(Employee.class, id);
             session2.close();
 
-            Employee employee = session.get(Employee.class, id);
+//            Employee employee = session.get(Employee.class, id);
 
             int size = CacheManager.ALL_CACHE_MANAGERS.get(0)
                     .getCache("com.kitcut.entity.Employee").getSize();
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();

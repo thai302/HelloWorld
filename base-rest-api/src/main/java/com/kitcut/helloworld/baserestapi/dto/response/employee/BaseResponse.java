@@ -6,12 +6,12 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-public class BaseResponse {
+public class BaseResponse<T> {
     private String message;
     private Integer code;
-    private Object data;
+    private T data;
 
-    public static BaseResponse ok(Object data) {
+    public static <T> BaseResponse<T> ok(T data) {
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setData(data);
         baseResponse.setCode(HttpStatus.OK.value());

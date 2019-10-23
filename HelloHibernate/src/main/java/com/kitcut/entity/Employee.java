@@ -5,16 +5,20 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "employee")
+@DynamicInsert
+@DynamicUpdate
 @NamedQuery(query = "SELECT e FROM Employee e WHERE id = :id", name = "test")
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

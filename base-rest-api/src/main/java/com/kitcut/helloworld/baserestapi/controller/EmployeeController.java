@@ -12,24 +12,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController extends BaseController<EmployeeEntity, Long, EmployeeService> {
 
-    @Autowired
-    EmployeeService employeeService;
-
     @PostMapping("")
     @Permission("employee-create")
-    public Object create(@RequestBody @Valid EmployeeCreateRequest request) {
-        EmployeeCreateResponse response = employeeService.create(request);
+    public BaseResponse<Object> create(@RequestBody @Valid EmployeeCreateRequest request) {
+        EmployeeCreateResponse response = service.create(request);
         return BaseResponse.ok(response);
     }
 
     @PutMapping("/{id}")
-    public Object update(@PathVariable Long id, @RequestBody @Valid EmployeeUpdateRequest request) {
-        EmployeeUpdateResponse response = employeeService.update(id, request);
+    public BaseResponse update(@PathVariable Long id, @RequestBody @Valid EmployeeUpdateRequest request) {
+        EmployeeUpdateResponse response = service.update(id, request);
         return BaseResponse.ok(response);
+    }
+
+    @Override
+    public BaseResponse<List<EmployeeEntity>> getAll() {
+        List<EmployeeEntity> response = service.findAll();
+//        return super.getAll();
+        return BaseResponse.ok(response);
+
     }
 }
