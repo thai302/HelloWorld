@@ -1,6 +1,7 @@
 package com.kitcut.helloworld.baserestapi.service.impl;
 
 import com.kitcut.helloworld.baserestapi.exception.BadRequestException;
+import com.kitcut.helloworld.baserestapi.exception.NotFoundException;
 import com.kitcut.helloworld.baserestapi.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,18 +29,18 @@ public class BaseServiceImpl<E, ID, R extends JpaRepository<E, ID>> implements B
     @Override
     public E findById(ID id) {
         if (id == null)
-            throw new BadRequestException(clazzEntity.getSimpleName() + ": id must be not empty");
+            throw new NotFoundException(clazzEntity.getSimpleName() + ": id must be not empty");
         else {
             try {
                 Optional<E> optional = repo.findById(id);
                 if (!optional.isPresent()) {
-                    throw new BadRequestException(String.format("Does not exist %s with id = %s",
+                    throw new NotFoundException(String.format("Does not exist %s with id = %s",
                             clazzEntity.getSimpleName(),
                             String.valueOf(id)));
                 }
                 return optional.get();
             } catch (NoSuchElementException e) {
-                throw new BadRequestException(String.format("Does not exist %s with id = %s",
+                throw new NotFoundException(String.format("Does not exist %s with id = %s",
                         clazzEntity.getSimpleName(),
                         String.valueOf(id)));
             }

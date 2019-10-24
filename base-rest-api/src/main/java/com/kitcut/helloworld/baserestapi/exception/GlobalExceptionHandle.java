@@ -11,10 +11,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +38,32 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 //
 //        return ResponseEntity.ok().header("error", "Global unhandle exceptions")
 //                .body(new Result<>().code(ResultCode.FAILED).message(e.getMessage()));
+//    }
+
+//    @ExceptionHandler(BadRequestException.class)
+//    public ResponseEntity<String> handleExceptions(Exception e) {
+//        e.printStackTrace();
+//        return ResponseEntity.badRequest()
+//                .body(e.getMessage());
+//    }
+
+//    @ExceptionHandler(NotFoundException.class)
+//    public void handleExceptions(HttpServletResponse response) throws IOException {
+//        response.sendError(HttpStatus.NOT_FOUND.value());
+//    }
+
+//    @ExceptionHandler(NoHandlerFoundException.class)
+//    @ResponseStatus(value= HttpStatus.NOT_FOUND)
+//    @ResponseBody
+//    public ResponseEntity<String> requestHandlingNoHandlerFound() {
+//        return new ResponseEntity<>("haha", HttpStatus.NOT_FOUND);
+//    }
+
+//    @ExceptionHandler(NoHandlerFoundException.class)
+//    @ResponseStatus(value=HttpStatus.NOT_FOUND)
+//    @ResponseBody
+//    public ResponseEntity<String> requestHandlingNoHandlerFound(final NoHandlerFoundException ex) {
+//        return new ResponseEntity<>("haha", HttpStatus.NOT_FOUND);
 //    }
 
     @Override

@@ -70,7 +70,7 @@ public class Interceptor implements HandlerInterceptor {
                             PermissionUserEntity permissionUserEntity = permissionUserService
                                     .findByUserIdAndPermissionName(tokenEntity.getUserId(), permission.value());
                             if (permissionUserEntity == null) {
-                                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                                response.setStatus(HttpStatus.FORBIDDEN.value());
                                 response.getWriter().append("User can not access function");
                                 return false;
                             } else {

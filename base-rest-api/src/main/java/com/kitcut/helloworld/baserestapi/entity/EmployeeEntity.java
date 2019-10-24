@@ -13,18 +13,18 @@ import java.util.Date;
 @DynamicInsert
 @DynamicUpdate
 @Entity(name = "employee")
-public class EmployeeEntity extends BaseEntity {
+public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "birthday")
-    private Date birthday;
-
-    @Column(name = "address")
-    private String address;
+//    @Column(name = "name")
+//    private String name;
+//
+//    @Column(name = "birthday")
+//    private Date birthday;
+//
+//    @Column(name = "address")
+//    private String address;
 }

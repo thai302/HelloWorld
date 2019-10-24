@@ -9,6 +9,8 @@ import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateRes
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,11 +33,14 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
         return BaseResponse.ok(response);
     }
 
+//    @Override
+////    public BaseResponse<List<EmployeeEntity>> getAll() {
+////        List<EmployeeEntity> response = service.findAll();
+////        return BaseResponse.ok(response);
+////    }
     @Override
-    public BaseResponse<List<EmployeeEntity>> getAll() {
+    public ResponseEntity<String> getAll() {
         List<EmployeeEntity> response = service.findAll();
-//        return super.getAll();
-        return BaseResponse.ok(response);
-
+        return ResponseEntity.badRequest().body("error");
     }
 }
