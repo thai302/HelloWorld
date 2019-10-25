@@ -8,6 +8,7 @@ import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeCreateRes
 import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateResponse;
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee")
+@Api(value = "Employee Management System", description = "Operations pertaining to employee in Employee Management System")
 public class EmployeeController extends BaseController<EmployeeEntity, Long, EmployeeService> {
 
     @PostMapping("")
-    @Permission("employee-create")
-    public BaseResponse<Object> create(@RequestBody @Valid EmployeeCreateRequest request) {
+//    @Permission("employee-create")
+    public BaseResponse<EmployeeCreateResponse> create(@RequestBody @Valid @ModelAttribute EmployeeCreateRequest request) {
         EmployeeCreateResponse response = service.create(request);
         return BaseResponse.ok(response);
     }
@@ -33,14 +35,9 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
         return BaseResponse.ok(response);
     }
 
-//    @Override
-////    public BaseResponse<List<EmployeeEntity>> getAll() {
-////        List<EmployeeEntity> response = service.findAll();
-////        return BaseResponse.ok(response);
-////    }
     @Override
-    public ResponseEntity<String> getAll() {
+    public BaseResponse<List<EmployeeEntity>> getAll() {
         List<EmployeeEntity> response = service.findAll();
-        return ResponseEntity.badRequest().body("error");
+        return BaseResponse.ok(response);
     }
 }
