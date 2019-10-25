@@ -47,10 +47,10 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 //                .body(e.getMessage());
 //    }
 
-//    @ExceptionHandler(NotFoundException.class)
-//    public void handleExceptions(HttpServletResponse response) throws IOException {
-//        response.sendError(HttpStatus.NOT_FOUND.value());
-//    }
+    @ExceptionHandler(NotFoundException.class)
+    public void handleExceptions(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
 
 //    @ExceptionHandler(NoHandlerFoundException.class)
 //    @ResponseStatus(value= HttpStatus.NOT_FOUND)

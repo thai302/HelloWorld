@@ -37,6 +37,7 @@ public class Interceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        return true;
         Method method = ((HandlerMethod) handler).getMethod();
         Permission permission = method.getAnnotation(Permission.class);
         if (permission == null)
