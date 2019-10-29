@@ -14,7 +14,7 @@ import java.util.Date;
 @ApiModel(description = "All details about the Employee. ")
 public class EmployeeCreateResponse {
     private Long id;
-    @ApiModelProperty(notes = "Employee Name")
+    @ApiModelProperty(notes = "Employee Name", example = "hahah")
     private String name;
     private Date birthday;
     private String address;

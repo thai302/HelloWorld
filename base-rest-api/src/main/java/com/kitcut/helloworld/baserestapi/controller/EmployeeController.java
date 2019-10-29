@@ -1,6 +1,5 @@
 package com.kitcut.helloworld.baserestapi.controller;
 
-import com.kitcut.helloworld.baserestapi.annotation.Permission;
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeCreateRequest;
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeUpdateRequest;
 import com.kitcut.helloworld.baserestapi.dto.response.employee.BaseResponse;
@@ -9,9 +8,7 @@ import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateRes
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +21,7 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
 
     @PostMapping("")
 //    @Permission("employee-create")
-    public BaseResponse<EmployeeCreateResponse> create(@RequestBody @Valid @ModelAttribute EmployeeCreateRequest request) {
+    public BaseResponse<EmployeeCreateResponse> create(@RequestBody @Valid EmployeeCreateRequest request) {
         EmployeeCreateResponse response = service.create(request);
         return BaseResponse.ok(response);
     }
@@ -39,5 +36,11 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
     public BaseResponse<List<EmployeeEntity>> getAll() {
         List<EmployeeEntity> response = service.findAll();
         return BaseResponse.ok(response);
+    }
+
+    @Override
+    public EmployeeEntity getDetail(
+            @ApiParam(value = "Employee Id", required = true) @PathVariable Long id) {
+        return service.findById(id);
     }
 }

@@ -21,10 +21,10 @@ public class EmployeeEntity {
 
 //    @Column(name = "name")
 //    private String name;
-//
-//    @Column(name = "birthday")
-//    private Date birthday;
-//
+
+    @Column(name = "birthday")
+    private Date birthday;
+
 //    @Column(name = "address")
 //    private String address;
 }
