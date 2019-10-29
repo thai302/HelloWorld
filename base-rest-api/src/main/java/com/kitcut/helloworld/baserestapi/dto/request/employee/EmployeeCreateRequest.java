@@ -22,4 +22,7 @@ public class EmployeeCreateRequest {
 
     @ApiModelProperty(notes = "Employee Address")
     private String address;
+
+    @Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
+    private String email;
 }

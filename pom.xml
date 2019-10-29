@@ -31,7 +31,7 @@
 
     <modules>
         <!--<module>springboot</module>-->
-        <!--<module>base-rest-api</module>-->
+        <module>base-rest-api</module>
         <!--<module>spring-cloud-services-registration-eureka-server</module>-->
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->
@@ -43,10 +43,10 @@
         <!--<module>test1</module>-->
         <!--<module>springboot-elasticsearch-example</module>-->
         <!--<module>test-nginx</module>-->
-        <module>caching-hazelcast-server</module>
-        <module>database</module>
-        <module>caching-hazelcast-client</module>
-        <module>reflection</module>
-        <module>HelloHibernate</module>
+        <!--<module>caching-hazelcast-server</module>-->
+        <!--<module>database</module>-->
+        <!--<module>caching-hazelcast-client</module>-->
+        <!--<module>reflection</module>-->
+        <!--<module>HelloHibernate</module>-->
     </modules>
 </project>
