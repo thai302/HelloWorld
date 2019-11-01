@@ -27,7 +27,7 @@ server:
 logging:
   path: C:/springboot.log
 
-language: en
+language: vi
 
 #elasticsearch
 #  clustername: my-application

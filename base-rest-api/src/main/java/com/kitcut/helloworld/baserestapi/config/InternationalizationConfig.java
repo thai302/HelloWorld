@@ -1,4 +1,4 @@
-package com.kitcut.helloworld.springboot.config;
+package com.kitcut.helloworld.baserestapi.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-public class InternationalizationConfig extends WebMvcConfigurerAdapter {
+public class InternationalizationConfig {
 
     @Value("${language}")
     private String language;
@@ -29,10 +29,5 @@ public class InternationalizationConfig extends WebMvcConfigurerAdapter {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("language");
         return localeChangeInterceptor;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
     }
 }

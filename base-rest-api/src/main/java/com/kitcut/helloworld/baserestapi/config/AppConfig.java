@@ -2,16 +2,19 @@ package com.kitcut.helloworld.baserestapi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Component
-@PropertySource("classpath:swagger.properties")
+@PropertySource({
+        "classpath:swagger_vi.properties",
+        "classpath:validate_fr.properties"
+})
 public class AppConfig implements WebMvcConfigurer {
     @Value("${cors.origin}")
     private String corsOrigin;
@@ -19,8 +22,12 @@ public class AppConfig implements WebMvcConfigurer {
     @Autowired
     private Interceptor interceptor;
 
+    @Autowired
+    private LocaleChangeInterceptor localeChangeInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor);
         registry.addInterceptor(interceptor)
                 .excludePathPatterns("/swagger**", "/webjars/springfox-swagger-ui/**");
     }
@@ -28,11 +35,5 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping(corsOrigin);
-    }
-
-    //To resolve ${} in @Value
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
     }
 }

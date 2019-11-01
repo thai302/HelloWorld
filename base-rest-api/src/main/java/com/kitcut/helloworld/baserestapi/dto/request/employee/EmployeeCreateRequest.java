@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,9 +18,6 @@ import java.util.Date;
 @Setter
 @ApiModel(description = "All details about the Employee. ")
 public class EmployeeCreateRequest {
-    @Value("${employee.name}")
-    private String name1;
-
     @ApiModelProperty(notes = "${employee.name}", required = true, example = "thaidh")
     @NotEmpty
     @Size(max = 25)
