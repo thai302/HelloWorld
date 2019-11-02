@@ -4,11 +4,14 @@ import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeCreateRequ
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeUpdateRequest;
 import com.kitcut.helloworld.baserestapi.dto.response.employee.BaseResponse;
 import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeCreateResponse;
+import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeListResponse;
 import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateResponse;
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,5 +45,10 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
     public EmployeeEntity getDetail(
             @ApiParam(value = "Employee Id", required = true) @PathVariable Long id) {
         return service.findById(id);
+    }
+
+    @GetMapping("get-all-paging")
+    public Page<EmployeeListResponse> getAllPaging(Pageable pageable){
+        return service.getAllPaging(pageable);
     }
 }

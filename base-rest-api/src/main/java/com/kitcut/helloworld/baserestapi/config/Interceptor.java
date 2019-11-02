@@ -8,6 +8,7 @@ import com.kitcut.helloworld.baserestapi.entity.UserEntity;
 import com.kitcut.helloworld.baserestapi.service.PermissionUserService;
 import com.kitcut.helloworld.baserestapi.service.TokenService;
 import com.kitcut.helloworld.baserestapi.service.UserService;
+import com.kitcut.helloworld.baserestapi.util.MessageSourceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,20 +49,23 @@ public class Interceptor implements HandlerInterceptor {
             //check token empty
             if (StringUtils.isBlank(token)) {
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                response.getWriter().append("Token must be not empty");
+                String msg = MessageSourceUtils.getMessage("unauthorized.token.empty");
+                response.getWriter().append(msg);
                 return false;
             } else {
                 //check exist token
                 TokenEntity tokenEntity = tokenService.findByToken(token);
                 if (tokenEntity == null) {
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    response.getWriter().append("Token is not found");
+                    String msg = MessageSourceUtils.getMessage("unauthorized.token.not-found");
+                    response.getWriter().append(msg);
                     return false;
                 } else {
                     //check token expired
                     if (tokenEntity.getExpiredTime().before(new Date())) {
                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                        response.getWriter().append("Token is expired");
+                        String msg = MessageSourceUtils.getMessage("unauthorized.token.expired");
+                        response.getWriter().append(msg);
                         return false;
                     } else {
                         if (StringUtils.isBlank(permission.value())) {
@@ -72,7 +76,8 @@ public class Interceptor implements HandlerInterceptor {
                                     .findByUserIdAndPermissionName(tokenEntity.getUserId(), permission.value());
                             if (permissionUserEntity == null) {
                                 response.setStatus(HttpStatus.FORBIDDEN.value());
-                                response.getWriter().append("User can not access function");
+                                String msg = MessageSourceUtils.getMessage("permission.access-denied");
+                                response.getWriter().append(msg);
                                 return false;
                             } else {
                                 setUserSession(tokenEntity);
@@ -85,7 +90,7 @@ public class Interceptor implements HandlerInterceptor {
         }
     }
 
-    private void setUserSession(TokenEntity tokenEntity){
+    private void setUserSession(TokenEntity tokenEntity) {
         UserEntity userEntity = userService.findById(tokenEntity.getUserId());
         userSession.setUserId(tokenEntity.getUserId());
         userSession.setUserName(userEntity.getName());

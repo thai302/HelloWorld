@@ -11,10 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Component
-@PropertySource({
-        "classpath:swagger_vi.properties",
-        "classpath:validate_fr.properties"
-})
 public class AppConfig implements WebMvcConfigurer {
     @Value("${cors.origin}")
     private String corsOrigin;
