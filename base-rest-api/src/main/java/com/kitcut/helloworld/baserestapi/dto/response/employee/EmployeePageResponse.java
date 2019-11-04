@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@ApiModel(description = "Employee list response")
-public class EmployeeListResponse extends EmployeeBaseResponse {
+@ApiModel(description = "Employee page response")
+public class EmployeePageResponse extends EmployeeBaseResponse {
+    private Long test;
 }

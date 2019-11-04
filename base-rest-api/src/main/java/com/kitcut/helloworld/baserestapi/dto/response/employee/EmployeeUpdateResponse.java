@@ -1,5 +1,8 @@
 package com.kitcut.helloworld.baserestapi.dto.response.employee;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.kitcut.helloworld.baserestapi.config.JsonDateSerializer;
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,9 +10,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class EmployeeUpdateResponse {
-    private Long id;
-    private String name;
-    private Date birthday;
-    private String address;
+@ApiModel(description = "Employee update response")
+public class EmployeeUpdateResponse extends EmployeeBaseResponse {
+    @JsonSerialize(using = JsonDateSerializer.DateTimeJsonSerializer.class)
+    private Date cmnUpdatedAt;
 }

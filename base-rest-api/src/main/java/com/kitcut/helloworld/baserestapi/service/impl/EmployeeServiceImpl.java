@@ -2,10 +2,7 @@ package com.kitcut.helloworld.baserestapi.service.impl;
 
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeCreateRequest;
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeUpdateRequest;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeCreateResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeDetailResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeListResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateResponse;
+import com.kitcut.helloworld.baserestapi.dto.response.employee.*;
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.repository.impl.EmployeeRepo;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
@@ -70,12 +67,23 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeEntity, Long, E
     }
 
     @Override
-    public Page<EmployeeListResponse> getAllPaging(Pageable pageable) {
+    public Page<EmployeePageResponse> getAllPaging(Pageable pageable) {
         //get page
         Page<EmployeeEntity> employeeEntityPage = findAll(pageable);
 
         //mapping response
-        Page<EmployeeListResponse> response = MappingUtils.mappingPage(employeeEntityPage, EmployeeListResponse.class);
+        Page<EmployeePageResponse> response = MappingUtils.mappingPage(employeeEntityPage, EmployeePageResponse.class);
+
+        return response;
+    }
+
+    @Override
+    public BasePageResponse<EmployeePageResponse> getAllPagingCustom(Pageable pageable) {
+        //get page
+        Page<EmployeeEntity> employeeEntityPage = findAll(pageable);
+
+        //mapping response
+        BasePageResponse<EmployeePageResponse> response = MappingUtils.mappingPageCustom(employeeEntityPage, EmployeePageResponse.class);
 
         return response;
     }

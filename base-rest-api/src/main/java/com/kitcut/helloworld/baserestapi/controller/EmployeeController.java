@@ -2,10 +2,7 @@ package com.kitcut.helloworld.baserestapi.controller;
 
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeCreateRequest;
 import com.kitcut.helloworld.baserestapi.dto.request.employee.EmployeeUpdateRequest;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.BaseResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeCreateResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeListResponse;
-import com.kitcut.helloworld.baserestapi.dto.response.employee.EmployeeUpdateResponse;
+import com.kitcut.helloworld.baserestapi.dto.response.employee.*;
 import com.kitcut.helloworld.baserestapi.entity.EmployeeEntity;
 import com.kitcut.helloworld.baserestapi.service.EmployeeService;
 import io.swagger.annotations.Api;
@@ -30,25 +27,33 @@ public class EmployeeController extends BaseController<EmployeeEntity, Long, Emp
     }
 
     @PutMapping("/{id}")
-    public BaseResponse update(@PathVariable Long id, @RequestBody @Valid EmployeeUpdateRequest request) {
+    public BaseResponse<EmployeeUpdateResponse> update(@PathVariable Long id, @RequestBody @Valid EmployeeUpdateRequest request) {
         EmployeeUpdateResponse response = service.update(id, request);
         return BaseResponse.ok(response);
     }
 
     @Override
-    public BaseResponse<List<EmployeeEntity>> getAll() {
-        List<EmployeeEntity> response = service.findAll();
+    public BaseResponse<List<EmployeeListResponse>> getAll() {
+        List<EmployeeListResponse> response = service.getAll();
         return BaseResponse.ok(response);
     }
 
     @Override
-    public EmployeeEntity getDetail(
+    public BaseResponse<EmployeeDetailResponse> getDetail(
             @ApiParam(value = "Employee Id", required = true) @PathVariable Long id) {
-        return service.findById(id);
+        EmployeeDetailResponse response = service.getDetail(id);
+        return BaseResponse.ok(response);
     }
 
     @GetMapping("get-all-paging")
-    public Page<EmployeeListResponse> getAllPaging(Pageable pageable){
-        return service.getAllPaging(pageable);
+    public BaseResponse<Page<EmployeePageResponse>> getAllPaging(Pageable pageable){
+        Page<EmployeePageResponse> response = service.getAllPaging(pageable);
+        return BaseResponse.ok(response);
+    }
+
+    @GetMapping("get-all-paging-custom")
+    public BaseResponse<BasePageResponse<EmployeePageResponse>> getAllPagingCustom(Pageable pageable){
+        BasePageResponse<EmployeePageResponse> response = service.getAllPagingCustom(pageable);
+        return BaseResponse.ok(response);
     }
 }
