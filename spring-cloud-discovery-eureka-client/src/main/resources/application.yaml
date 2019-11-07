@@ -36,7 +36,7 @@ spring:
   profiles: abc-service-replica02
 eureka:
   instance:
-    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+    appname: ABC-SERVICE-2  # ==> This is a instance of ABC-SERVICE
   client:
     fetchRegistry: true
     serviceUrl:
