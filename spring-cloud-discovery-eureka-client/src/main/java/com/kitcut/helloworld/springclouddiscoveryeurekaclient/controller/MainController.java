@@ -3,6 +3,7 @@ package com.kitcut.helloworld.springclouddiscoveryeurekaclient.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,9 @@ public class MainController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
+
+    @Autowired
+    private Environment environment;
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -62,8 +66,7 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-
-        return "<html>Hello from ABC-SERVICE</html>";
+        return "<html>Hello from ABC-SERVICE</html>" + environment.getProperty("local.server.port");
     }
 
 }
