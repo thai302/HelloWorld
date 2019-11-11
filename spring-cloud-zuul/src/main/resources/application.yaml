@@ -20,4 +20,9 @@ zuul:
   ignored-services: '*'
     # Map paths to services
   routes:
-    abc-service: /abc/**
+    abc-service:
+      path: /abc/**
+      serviceId: abc-service
+    xyz-service:
+      path: /xyz/**
+      serviceId: http://localhost:5555
