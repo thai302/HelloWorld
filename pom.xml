@@ -38,6 +38,7 @@
         <module>spring-cloud-service-registration-eureka-server</module>
         <module>spring-cloud-loadbalance-ribbon</module>
         <module>spring-cloud-zuul</module>
+        <module>spring-oauth2</module>
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->
         <!--<module>VoiceBrandName</module>-->
