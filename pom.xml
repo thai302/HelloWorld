@@ -30,7 +30,7 @@
     </properties>
 
     <modules>
-        <!--<module>springboot</module>-->
+        <module>springboot</module>
         <module>base-rest-api</module>
         <module>spring-cloud-config-client</module>
         <module>spring-cloud-config-server</module>
@@ -39,6 +39,7 @@
         <module>spring-cloud-loadbalance-ribbon</module>
         <module>spring-cloud-zuul</module>
         <module>spring-oauth2</module>
+        <module>spring-security</module>
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->
         <!--<module>VoiceBrandName</module>-->
@@ -54,6 +55,6 @@
         <!--<module>caching-hazelcast-client</module>-->
         <!--<module>reflection</module>-->
         <!--<module>HelloHibernate</module>-->
-        <module>vtg2</module>
+        <!--<module>vtg2</module>-->
     </modules>
 </project>

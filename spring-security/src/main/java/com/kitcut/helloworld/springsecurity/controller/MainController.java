@@ -13,6 +13,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return "index";
     }
 

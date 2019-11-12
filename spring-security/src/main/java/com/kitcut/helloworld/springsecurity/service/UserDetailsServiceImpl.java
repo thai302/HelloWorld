@@ -1,9 +1,6 @@
 package com.kitcut.helloworld.springsecurity.service;
 
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.kitcut.helloworld.springsecurity.entity.Role;
 import com.kitcut.helloworld.springsecurity.entity.User;
 import com.kitcut.helloworld.springsecurity.repository.UserRepository;
@@ -16,8 +13,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class
+UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
