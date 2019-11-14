@@ -8,7 +8,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://my-eureka-server-us.com:9001/eureka
+      defaultZone: http://my-eureka-server.com:9000/eureka
 
 
 # They should be only accessed through the path defined below.
@@ -26,3 +26,8 @@ zuul:
     xyz-service:
       path: /xyz/**
       serviceId: http://localhost:5555
+    auth-service:
+      path: /auth/**
+      serviceId: auth-service
+      strip-prefix: false
+      sensitive-headers: Cookie,Set-Cookie
