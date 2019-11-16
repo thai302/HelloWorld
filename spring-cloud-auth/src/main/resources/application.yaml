@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: AUTH-SERVICE
+
 # Items that apply to ALL profiles:
 eureka:
   instance:
@@ -6,8 +10,6 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://my-eureka-server.com:9000/eureka
-#      defaultZone: http://my-eureka-server-us.com:9001/eureka
-#      defaultZone: http://my-eureka-server-fr.com:9002/eureka
-#      defaultZone: http://my-eureka-server-vn.com:9003/eureka
+
 server:
   port: 9100

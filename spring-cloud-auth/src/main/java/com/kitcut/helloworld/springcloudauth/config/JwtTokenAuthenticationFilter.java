@@ -1,4 +1,4 @@
-package com.kitcut.helloworld.springcloudzuul.config;
+package com.kitcut.helloworld.springcloudauth.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

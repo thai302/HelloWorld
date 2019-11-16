@@ -3,6 +3,7 @@ package com.kitcut.helloworld.springcloudauth.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,7 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
                          .commaSeparatedStringToAuthorityList("ROLE_" + appUser.getRole());
 
                 // The "User" class is provided by Spring and represents a model class for user to be returned by UserDetailsService
-                // And used by auth manager to verify and check user authentication.  return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities);
+                // And used by auth manager to verify and check user authentication.
+                 return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities);
             }
         }
 

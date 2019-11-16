@@ -4,12 +4,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class MainController {
+
+    @ResponseBody
+    @GetMapping("/register")
+    public String index1() {
+        return "index";
+    }
 
     @GetMapping("/")
     public String index() {
@@ -27,10 +34,10 @@ public class MainController {
         return "403";
     }
 
-    @GetMapping("/login")
-    public String getLogin() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String getLogin() {
+//        return "login";
+//    }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {

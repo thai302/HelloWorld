@@ -3,6 +3,7 @@ package com.kitcut.helloworld.springcloudauth.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import java.sql.Date;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter   {
+public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     // We use auth manager to validate the user credentials
     private AuthenticationManager authManager;
@@ -33,7 +34,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         // By default, UsernamePasswordAuthenticationFilter listens to "/login" path.
         // In our case, we use "/auth". So, we need to override the defaults.
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), "POST"));
+        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), HttpMethod.POST.name()));
     }
 
     @Override
@@ -58,7 +59,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     }
 
     // Upon successful authentication, generate a token.
-    // The 'auth' passed to successfulAuthentication() is the current authenticated user.  @Override
+    // The 'auth' passed to successfulAuthentication() is the current authenticated user.
+    @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 

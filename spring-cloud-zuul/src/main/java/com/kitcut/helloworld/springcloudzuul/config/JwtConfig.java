@@ -3,7 +3,7 @@ package com.kitcut.helloworld.springcloudzuul.config;
 import org.springframework.beans.factory.annotation.Value;
 
 public class JwtConfig {
-    @Value("${security.jwt.uri:/auth/**}")
+    @Value("${security.jwt.uri:/api/auth/login}")
     private String Uri;
 
     @Value("${security.jwt.header:Authorization}")
