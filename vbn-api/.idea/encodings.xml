@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-cloud-service-registration-eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-cloud-zuul" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-cms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vbn-resource" charset="UTF-8" />
+  </component>
+</project>

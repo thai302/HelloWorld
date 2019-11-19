@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: vbn-core-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      database: MYSQL
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+
+    messages:
+      basename: messages, validate, swagger
+
+# Items that apply to ALL profiles:
+eureka:
+  instance:
+    appname: vbn-core-service  # ==> This is a instance of CORE-SERVICE
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+server:
+  port: 9003
+
+cors:
+  origin: /**
+
+language: vi

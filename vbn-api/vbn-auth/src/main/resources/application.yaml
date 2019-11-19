@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: vbn-auth-service
+
+# Items that apply to ALL profiles:
+eureka:
+  instance:
+    appname: vbn-auth-service  # ==> This is a instance of AUTH-SERVICE
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+server:
+  port: 9002

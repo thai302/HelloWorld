@@ -1,0 +1,31 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: vbn-zuul-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+
+# They should be only accessed through the path defined below.
+
+zuul:
+  # A prefix that can added to beginning of all requests.
+  prefix: /api
+  # Disable accessing services using service name (i.e. gallery-service).
+  ignored-services: '*'
+    # Map paths to services
+  routes:
+    vbn-core-service:
+      path: /vbn-core/**
+      serviceId: vbn-core-service
+      sensitive-headers: Cookie,Set-Cookie
+    vbn-auth-service:
+      path: /vbn-auth/**
+      serviceId: vbn-auth-service
+#      strip-prefix: false
+      sensitive-headers: Cookie,Set-Cookie
