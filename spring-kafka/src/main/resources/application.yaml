@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      user-created: test
+      request-topic: request-topic
+      reply-topic: reply-topic
+    consumer:
+      properties:
+        spring:
+          json:
+            trusted:
+#      group-id: myGroup
+#              packages: com.kitcut.helloworld.springkafka
