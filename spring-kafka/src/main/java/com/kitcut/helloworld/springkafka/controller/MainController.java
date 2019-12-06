@@ -24,9 +24,9 @@ public class MainController {
         user1.setId(1L);
         user1.setUsername("thai");
 
-//        sender.send("test", user);
+        sender.send("test", user);
 //        sender.send("test", user1);
-        sender.send("test", "1");
+//        sender.send("test", "1");
 
     }
 }

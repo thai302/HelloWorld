@@ -23,10 +23,13 @@ public class KafkaConsumerReplyConfig extends KafkaConsumerConfigBase<Model> {
 
     @Bean
     public ConsumerFactory<String, Model> consumerFactory() {
+        final JsonDeserializer<Model> jsonDeserializer = new JsonDeserializer<>();
+        jsonDeserializer.addTrustedPackages("*");
+
         return new DefaultKafkaConsumerFactory<>(
                 consumerConfigs("modelConsumerFactory"),
                 new StringDeserializer(),
-                new JsonDeserializer<>(Model.class));
+                jsonDeserializer);
     }
 
     @Bean

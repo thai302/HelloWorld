@@ -19,6 +19,8 @@ public class KafkaProducerConfigBase extends KafkaConfigBase {
 
         //use JsonSerializer if object that is mapping belong to library that can referenced
         //else use StringSerializer
+
+        //use JsonSerializer for ReplyKafkaTemplate
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 //        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
