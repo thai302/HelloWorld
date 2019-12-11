@@ -12,6 +12,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL
     show-sql: true
+    hibernate:
+      ddl-auto: update
   messages:
     basename: messages, validate, swagger
 

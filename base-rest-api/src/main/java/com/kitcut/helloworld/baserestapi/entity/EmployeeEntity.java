@@ -1,5 +1,7 @@
 package com.kitcut.helloworld.baserestapi.entity;
 
+import com.kitcut.helloworld.baserestapi.entity.converter.EmployeeStatusConverter;
+import com.kitcut.helloworld.baserestapi.enums.EmployeeStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -27,4 +29,11 @@ public class EmployeeEntity {
 
 //    @Column(name = "address")
 //    private String address;
+
+    @Column(name = "status")
+    @Convert(converter = EmployeeStatusConverter.class)
+    private EmployeeStatus status;
+
 }
+
+

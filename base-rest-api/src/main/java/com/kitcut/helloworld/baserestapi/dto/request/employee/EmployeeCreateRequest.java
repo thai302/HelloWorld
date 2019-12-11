@@ -1,17 +1,15 @@
 package com.kitcut.helloworld.baserestapi.dto.request.employee;
 
+import com.kitcut.helloworld.baserestapi.enums.EmployeeStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Getter
@@ -33,4 +31,7 @@ public class EmployeeCreateRequest {
     @Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
     @NotNull
     private String email;
+
+    @NotNull
+    private EmployeeStatus status;
 }

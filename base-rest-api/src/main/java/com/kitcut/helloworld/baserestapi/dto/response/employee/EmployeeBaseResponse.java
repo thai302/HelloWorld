@@ -1,5 +1,6 @@
 package com.kitcut.helloworld.baserestapi.dto.response.employee;
 
+import com.kitcut.helloworld.baserestapi.enums.EmployeeStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +21,6 @@ public class EmployeeBaseResponse {
 
     @ApiModelProperty(notes = "Employee Address", example = "NA")
     private String address;
+
+    private EmployeeStatus status;
 }
