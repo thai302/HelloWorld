@@ -34,18 +34,18 @@
         <module>base-rest-api</module>
         <!--<module>spring-cloud-config-client</module>-->
         <!--<module>spring-cloud-config-server</module>-->
-        <module>spring-cloud-discovery-eureka-client</module>
-        <module>spring-cloud-service-registration-eureka-server</module>
-        <module>spring-cloud-loadbalance-ribbon</module>
-        <module>spring-cloud-zuul</module>
+        <!--<module>spring-cloud-discovery-eureka-client</module>-->
+        <!--<module>spring-cloud-service-registration-eureka-server</module>-->
+        <!--<module>spring-cloud-loadbalance-ribbon</module>-->
+        <!--<module>spring-cloud-zuul</module>-->
         <!--<module>spring-oauth2</module>-->
-        <module>spring-security</module>
-        <module>kafka</module>
-        <module>spring-kafka</module>
+        <!--<module>spring-security</module>-->
+        <!--<module>kafka</module>-->
+        <!--<module>spring-kafka</module>-->
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->
         <!--<module>VoiceBrandName</module>-->
-        <module>rabbitmq</module>
+        <!--<module>rabbitmq</module>-->
         <!--<module>json-abstract-class</module>-->
         <!--<module>marshalling</module>-->
         <!--<module>stream</module>-->

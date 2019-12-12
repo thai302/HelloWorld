@@ -1,0 +1,3 @@
+Không update được plugin
+Go to Manage Jenkins->Configure Global Security
+Click the checkbox for "Use browser for metadata download"
