@@ -1,0 +1,19 @@
+Hiển thị dependency tree
+dependency:tree -Dverbose
+
+<exclusions>
+    <exclusion>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr-runtime</artifactId>
+    </exclusion>
+</exclusions>
+
+
+
+
+cache
+git config credential.helper cache
+
+
+lỗi : peer's certificate has expired git
+git config --global http.sslVerify false

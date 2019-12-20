@@ -1,0 +1,11 @@
+https://www.vultr.com/docs/how-to-install-apache-tomcat-8-on-centos-7
+
+https://linuxize.com/post/how-to-stop-and-disable-firewalld-on-centos-7/
+
+
+
+
+
+firewall
+sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload

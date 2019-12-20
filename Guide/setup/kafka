@@ -1,0 +1,8 @@
+https://tailieu.123host.vn/kb/vps/huong-dan-cai-dat-apache-kafka-tren-centos-7.html
+
+https://www-eu.apache.org/dist/kafka/2.4.0/kafka_2.11-2.4.0.tgz.
+
+
+Cấu hình remote server
+.\config\server.properties
+listeners=PLAINTEXT://remote-ip:9092

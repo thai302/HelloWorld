@@ -4,6 +4,8 @@ server:
     context-path: /base-rest-api
 
 spring:
+  profiles:
+    active: @activatedProperties@
   datasource:
     url: jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
@@ -20,4 +22,4 @@ spring:
 cors:
   origin: /**
 
-language: vi
+language: en

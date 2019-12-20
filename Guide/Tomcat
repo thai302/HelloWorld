@@ -1,0 +1,12 @@
+./catalina.sh run
+./catalina.sh start
+./catalina.sh stop
+
+Muốn build file war để chạy trên tomcat thì phải thêm "ServletInitializer extends SpringBootServletInitializer"
+
+Build nhiều app spring boot trên 1 tomcat thì thêm
+  spring:
+    application:
+      name: vbn-auth-service
+    jmx:
+      default-domain: vbn-auth-service

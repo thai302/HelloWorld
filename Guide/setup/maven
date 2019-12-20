@@ -1,0 +1,17 @@
+https://www.tecmint.com/install-apache-maven-on-centos-7/
+
+
+
+This is because of running jre rather than jdk, to install jdk follow below steps
+
+Installing java 8 in amazon linux/redhat
+
+--> yum search java | grep openjdk
+
+--> yum install java-1.8.0-openjdk-headless.x86_64
+
+--> yum install java-1.8.0-openjdk-devel.x86_64
+
+--> update-alternatives --config java #pick java 1.8 and press 1
+
+--> update-alternatives --config javac #pick java 1.8 and press 2

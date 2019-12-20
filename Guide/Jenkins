@@ -1,3 +1,9 @@
 Không update được plugin
 Go to Manage Jenkins->Configure Global Security
 Click the checkbox for "Use browser for metadata download"
+
+Build
+cd C:\Users\MrMaZe\.jenkins\workspace\test
+mvn install -DskipTests
+
+copy "base-rest-api\target\base-rest-api-1.0.0.war" "E:\thaidh\Setup\apache-tomcat-9.0.29\webapps"

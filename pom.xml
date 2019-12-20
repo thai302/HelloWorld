@@ -30,7 +30,7 @@
     </properties>
 
     <modules>
-        <!--<module>springboot</module>-->
+        <module>springboot</module>
         <module>base-rest-api</module>
         <!--<module>spring-cloud-config-client</module>-->
         <!--<module>spring-cloud-config-server</module>-->

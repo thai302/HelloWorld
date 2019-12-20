@@ -1,25 +1,17 @@
 package com.kitcut.helloworld.baserestapi.config;
 
-import com.kitcut.helloworld.baserestapi.annotation.Permission;
 import com.kitcut.helloworld.baserestapi.bean.UserSession;
-import com.kitcut.helloworld.baserestapi.entity.PermissionUserEntity;
 import com.kitcut.helloworld.baserestapi.entity.TokenEntity;
 import com.kitcut.helloworld.baserestapi.entity.UserEntity;
 import com.kitcut.helloworld.baserestapi.service.PermissionUserService;
 import com.kitcut.helloworld.baserestapi.service.TokenService;
 import com.kitcut.helloworld.baserestapi.service.UserService;
-import com.kitcut.helloworld.baserestapi.util.MessageSourceUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
-import java.util.Date;
 
 @Component
 public class Interceptor implements HandlerInterceptor {
@@ -38,56 +30,56 @@ public class Interceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        return true;
-        Method method = ((HandlerMethod) handler).getMethod();
-        Permission permission = method.getAnnotation(Permission.class);
-        if (permission == null)
-            return true;
-        else {
-            String token = request.getHeader("Authorization");
-
-            //check token empty
-            if (StringUtils.isBlank(token)) {
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                String msg = MessageSourceUtils.getMessage("unauthorized.token.empty");
-                response.getWriter().append(msg);
-                return false;
-            } else {
-                //check exist token
-                TokenEntity tokenEntity = tokenService.findByToken(token);
-                if (tokenEntity == null) {
-                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    String msg = MessageSourceUtils.getMessage("unauthorized.token.not-found");
-                    response.getWriter().append(msg);
-                    return false;
-                } else {
-                    //check token expired
-                    if (tokenEntity.getExpiredTime().before(new Date())) {
-                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                        String msg = MessageSourceUtils.getMessage("unauthorized.token.expired");
-                        response.getWriter().append(msg);
-                        return false;
-                    } else {
-                        if (StringUtils.isBlank(permission.value())) {
-                            setUserSession(tokenEntity);
-                            return true;
-                        } else {
-                            PermissionUserEntity permissionUserEntity = permissionUserService
-                                    .findByUserIdAndPermissionName(tokenEntity.getUserId(), permission.value());
-                            if (permissionUserEntity == null) {
-                                response.setStatus(HttpStatus.FORBIDDEN.value());
-                                String msg = MessageSourceUtils.getMessage("permission.access-denied");
-                                response.getWriter().append(msg);
-                                return false;
-                            } else {
-                                setUserSession(tokenEntity);
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return true;
+//        Method method = ((HandlerMethod) handler).getMethod();
+//        Permission permission = method.getAnnotation(Permission.class);
+//        if (permission == null)
+//            return true;
+//        else {
+//            String token = request.getHeader("Authorization");
+//
+//            //check token empty
+//            if (StringUtils.isBlank(token)) {
+//                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//                String msg = MessageSourceUtils.getMessage("unauthorized.token.empty");
+//                response.getWriter().append(msg);
+//                return false;
+//            } else {
+//                //check exist token
+//                TokenEntity tokenEntity = tokenService.findByToken(token);
+//                if (tokenEntity == null) {
+//                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//                    String msg = MessageSourceUtils.getMessage("unauthorized.token.not-found");
+//                    response.getWriter().append(msg);
+//                    return false;
+//                } else {
+//                    //check token expired
+//                    if (tokenEntity.getExpiredTime().before(new Date())) {
+//                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//                        String msg = MessageSourceUtils.getMessage("unauthorized.token.expired");
+//                        response.getWriter().append(msg);
+//                        return false;
+//                    } else {
+//                        if (StringUtils.isBlank(permission.value())) {
+//                            setUserSession(tokenEntity);
+//                            return true;
+//                        } else {
+//                            PermissionUserEntity permissionUserEntity = permissionUserService
+//                                    .findByUserIdAndPermissionName(tokenEntity.getUserId(), permission.value());
+//                            if (permissionUserEntity == null) {
+//                                response.setStatus(HttpStatus.FORBIDDEN.value());
+//                                String msg = MessageSourceUtils.getMessage("permission.access-denied");
+//                                response.getWriter().append(msg);
+//                                return false;
+//                            } else {
+//                                setUserSession(tokenEntity);
+//                                return true;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     private void setUserSession(TokenEntity tokenEntity) {
