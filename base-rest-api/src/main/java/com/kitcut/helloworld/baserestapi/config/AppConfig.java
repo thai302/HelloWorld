@@ -2,13 +2,10 @@ package com.kitcut.helloworld.baserestapi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Component
 public class AppConfig implements WebMvcConfigurer {
@@ -18,12 +15,12 @@ public class AppConfig implements WebMvcConfigurer {
     @Autowired
     private Interceptor interceptor;
 
-    @Autowired
-    private LocaleChangeInterceptor localeChangeInterceptor;
+//    @Autowired
+//    private LocaleChangeInterceptor localeChangeInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor);
+//        registry.addInterceptor(localeChangeInterceptor);
         registry.addInterceptor(interceptor)
                 .excludePathPatterns("/swagger**", "/webjars/springfox-swagger-ui/**");
     }
