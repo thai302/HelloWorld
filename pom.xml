@@ -30,8 +30,8 @@
     </properties>
 
     <modules>
-        <module>springboot</module>
-        <module>base-rest-api</module>
+        <!--<module>springboot</module>-->
+        <!--<module>base-rest-api</module>-->
         <!--<module>spring-cloud-config-client</module>-->
         <!--<module>spring-cloud-config-server</module>-->
         <!--<module>spring-cloud-discovery-eureka-client</module>-->
@@ -41,6 +41,7 @@
         <!--<module>spring-oauth2</module>-->
         <!--<module>spring-security</module>-->
         <!--<module>kafka</module>-->
+        <module>axon-event-sourcing</module>
         <!--<module>spring-kafka</module>-->
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->
