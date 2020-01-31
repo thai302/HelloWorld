@@ -1,6 +1,8 @@
 spring:
+  application:
+    name: order-service
   datasource:
-    url: jdbc:mysql://localhost:3306/axon-event-sourcing?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/axon-saga-pattern?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 123456
   jpa:

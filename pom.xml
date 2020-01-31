@@ -42,6 +42,7 @@
         <!--<module>spring-security</module>-->
         <!--<module>kafka</module>-->
         <module>axon-event-sourcing</module>
+        <module>axon-saga-pattern</module>
         <!--<module>spring-kafka</module>-->
         <!--<module>netty-tcp-server</module>-->
         <!--<module>netty</module>-->

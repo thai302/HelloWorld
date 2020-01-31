@@ -30,13 +30,12 @@ public class AccountAggregate {
     }
 
     @CommandHandler
-    public AccountAggregate(CreateAccountCommand createAccountCommand){
-        int i = 1;
-//        AggregateLifecycle.apply(new AccountCreatedEvent(createAccountCommand.id, createAccountCommand.accountBalance, createAccountCommand.currency));
+    public AccountAggregate(CreateAccountCommand createAccountCommand) {
+        AggregateLifecycle.apply(new AccountCreatedEvent(createAccountCommand.id, createAccountCommand.accountBalance, createAccountCommand.currency));
     }
 
     @EventSourcingHandler
-    protected void on(AccountCreatedEvent accountCreatedEvent){
+    protected void on(AccountCreatedEvent accountCreatedEvent) {
         this.id = accountCreatedEvent.id;
         this.accountBalance = accountCreatedEvent.accountBalance;
         this.currency = accountCreatedEvent.currency;
@@ -45,20 +44,21 @@ public class AccountAggregate {
         AggregateLifecycle.apply(new AccountActivatedEvent(this.id, Status.ACTIVATED));
     }
 
+
     @EventSourcingHandler
-    protected void on(AccountActivatedEvent accountActivatedEvent){
+    protected void on(AccountActivatedEvent accountActivatedEvent) {
         this.status = String.valueOf(accountActivatedEvent.status);
     }
 
     @CommandHandler
-    protected void on(CreditMoneyCommand creditMoneyCommand){
+    protected void on(CreditMoneyCommand creditMoneyCommand) {
         AggregateLifecycle.apply(new MoneyCreditedEvent(creditMoneyCommand.id, creditMoneyCommand.creditAmount, creditMoneyCommand.currency));
     }
 
     @EventSourcingHandler
-    protected void on(MoneyCreditedEvent moneyCreditedEvent){
+    protected void on(MoneyCreditedEvent moneyCreditedEvent) {
 
-        if (this.accountBalance < 0 & (this.accountBalance + moneyCreditedEvent.creditAmount) >= 0){
+        if (this.accountBalance < 0 & (this.accountBalance + moneyCreditedEvent.creditAmount) >= 0) {
             AggregateLifecycle.apply(new AccountActivatedEvent(this.id, Status.ACTIVATED));
         }
 
@@ -66,14 +66,14 @@ public class AccountAggregate {
     }
 
     @CommandHandler
-    protected void on(DebitMoneyCommand debitMoneyCommand){
+    protected void on(DebitMoneyCommand debitMoneyCommand) {
         AggregateLifecycle.apply(new MoneyDebitedEvent(debitMoneyCommand.id, debitMoneyCommand.debitAmount, debitMoneyCommand.currency));
     }
 
     @EventSourcingHandler
-    protected void on(MoneyDebitedEvent moneyDebitedEvent){
+    protected void on(MoneyDebitedEvent moneyDebitedEvent) {
 
-        if (this.accountBalance >= 0 & (this.accountBalance - moneyDebitedEvent.debitAmount) < 0){
+        if (this.accountBalance >= 0 & (this.accountBalance - moneyDebitedEvent.debitAmount) < 0) {
             AggregateLifecycle.apply(new AccountHeldEvent(this.id, Status.HOLD));
         }
 
@@ -82,7 +82,7 @@ public class AccountAggregate {
     }
 
     @EventSourcingHandler
-    protected void on(AccountHeldEvent accountHeldEvent){
+    protected void on(AccountHeldEvent accountHeldEvent) {
         this.status = String.valueOf(accountHeldEvent.status);
     }
 }
