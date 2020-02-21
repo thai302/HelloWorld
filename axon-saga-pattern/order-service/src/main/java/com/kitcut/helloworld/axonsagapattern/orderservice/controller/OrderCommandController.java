@@ -1,7 +1,7 @@
-package com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.controller;
+package com.kitcut.helloworld.axonsagapattern.orderservice.controller;
 
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.dto.OrderCreateDTO;
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.service.OrderCommandService;
+import com.kitcut.helloworld.axonsagapattern.orderservice.dto.OrderCreateDTO;
+import com.kitcut.helloworld.axonsagapattern.orderservice.service.OrderCommandService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

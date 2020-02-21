@@ -1,11 +1,11 @@
-package com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.service.impl;
+package com.kitcut.helloworld.axonsagapattern.orderservice.service.impl;
 
 import com.kitcut.helloworld.axonsagapattern.coreapis.command.CreateOrderCommand;
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.dto.OrderCreateDTO;
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.enums.OrderStatus;
+import com.kitcut.helloworld.axonsagapattern.orderservice.dto.OrderCreateDTO;
+import com.kitcut.helloworld.axonsagapattern.orderservice.enums.OrderStatus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.service.OrderCommandService;
+import com.kitcut.helloworld.axonsagapattern.orderservice.service.OrderCommandService;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;

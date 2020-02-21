@@ -1,0 +1,27 @@
+https://1hosting.com.vn/glusterfs-la-gi-cau-hinh-glusterfs-nhu-nao-phan-2/
+
+
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
+rpm --import https://fedoraproject.org/static/0608B895.txt
+cd /tmp
+wget https://download-ib01.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+yum install yum-priorities
+
+yum install centos-release-gluster
+yum install glusterfs-server
+systemctl enable glusterd.service
+systemctl start glusterd.service
+
+--centos 7 không dùng
+chkconfig --levels 235 glusterd on
+/etc/init.d/glusterd start
+----
+
+glusterfsd --version
+
+gluster peer probe server2.1hosting.com.vn
+gluster peer status
+
+gluster volume create Host replica 2 transport tcp 61.14.237.87:/data 61.14.237.86:/data force
+netstat -tap | grep glusterfsd

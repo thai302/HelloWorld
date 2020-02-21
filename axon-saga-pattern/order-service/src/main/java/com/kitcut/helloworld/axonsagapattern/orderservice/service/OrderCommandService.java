@@ -1,6 +1,6 @@
-package com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.service;
+package com.kitcut.helloworld.axonsagapattern.orderservice.service;
 
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.dto.OrderCreateDTO;
+import com.kitcut.helloworld.axonsagapattern.orderservice.dto.OrderCreateDTO;
 
 import java.util.concurrent.CompletableFuture;
 

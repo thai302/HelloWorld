@@ -1,4 +1,4 @@
-package com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.dto;
+package com.kitcut.helloworld.axonsagapattern.orderservice.dto;
 
 import lombok.Getter;
 import lombok.Setter;

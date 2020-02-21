@@ -1,4 +1,4 @@
-package com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.saga;
+package com.kitcut.helloworld.axonsagapattern.orderservice.saga;
 
 import com.kitcut.helloworld.axonsagapattern.coreapis.command.CreateInvoiceCommand;
 import com.kitcut.helloworld.axonsagapattern.coreapis.command.CreateShippingCommand;
@@ -7,7 +7,7 @@ import com.kitcut.helloworld.axonsagapattern.coreapis.event.InvoiceCreatedEvent;
 import com.kitcut.helloworld.axonsagapattern.coreapis.event.OrderCreatedEvent;
 import com.kitcut.helloworld.axonsagapattern.coreapis.event.OrderShippedEvent;
 import com.kitcut.helloworld.axonsagapattern.coreapis.event.OrderUpdatedEvent;
-import com.kitcut.helloworld.axonsagapattern.orderservice.aggregate.enums.OrderStatus;
+import com.kitcut.helloworld.axonsagapattern.orderservice.enums.OrderStatus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.SagaLifecycle;
