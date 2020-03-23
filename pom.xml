@@ -62,5 +62,7 @@
         <!--<module>reflection</module>-->
         <!--<module>HelloHibernate</module>-->
         <!--<module>vtg2</module>-->
+        <!--<module>HelloSpring</module>-->
+        <module>spring-aop</module>
     </modules>
 </project>
