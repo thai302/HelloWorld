@@ -1,0 +1,15 @@
+https://theta.vn/web-server/cai-dat-nginx-tren-centos-7
+
+yum install epel-release -y
+yum install nginx -y
+systemctl start nginx.service
+systemctl enable nginx.service
+
+
+
+http://nginx.org/en/docs/beginners_guide.html
+set permission
+
+ location /images/ {
+        root /data;
+    }
